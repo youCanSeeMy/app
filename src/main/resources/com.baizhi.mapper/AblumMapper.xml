@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-/mybatis.org//DTD
+Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baizhi.dao.AblumDAO">
+    <!--展示所有专辑和它的章节-->
+    <resultMap id="r1" type="Ablum">
+        <id column="pid"  property="id"></id>
+        <result column="ptitle" property="title"></result>
+        <result column="pco" property="coverImg"></result>
+        <result column="pc" property="count"></result>
+        <result column="ps" property="score"></result>
+        <result column="pa" property="author"></result>
+        <result column="pb" property="broadCast"></result>
+        <result column="pbr" property="brief"></result>
+        <result column="pp" property="publishDate"></result>
+        <collection property="children" ofType="Chapter">
+            <id column="cid" property="id"></id>
+            <result column="ct" property="title"></result>
+            <result column="cs" property="size"></result>
+            <result column="cd" property="duration"></result>
+            <result column="cdo" property="downPath"></result>
+            <result column="ca" property="aid"></result>
+        </collection>
+    </resultMap>
+    <select id="queryAll" resultMap="r1">
+        select p.id pid,p.title ptitle,p.coverImg pco,p.count pc,p.score ps,
+        p.author pa,p.broadCast pb,p.brief pbr,p.publishDate pp,
+        c.id cid,c.title ct,c.size cs,c.duration cd,c.downPath cdo,c.aid ca
+        from f_ablum p left join f_chapter c on p.id = c.aid;
+    </select>
+    <!--根据专辑id查询专辑详情-->
+    <select id="queryOne1" parameterType="java.lang.String" resultMap="r1">
+        select p.id pid,p.title ptitle,p.coverImg pco,p.count pc,p.score ps,
+        p.author pa,p.broadCast pb,p.brief pbr,p.publishDate pp,
+        c.id cid,c.title ct,c.size cs,c.duration cd,c.downPath cdo,c.aid ca
+        from f_ablum p left join f_chapter c on p.id = c.aid where p.id = #{id}
+    </select>
+    <select id="queryOne" parameterType="java.lang.String" resultType="Ablum">
+        select id,title,coverImg,count,score,author,broadCast,brief,publishDate
+        from f_ablum where id=#{id}
+    </select>
+    <!--添加专辑-->
+    <insert id="addOne" parameterType="Ablum">
+        insert into f_ablum values (#{id},#{title},#{coverImg},#{count},#{score},#{author},#{broadCast},#{brief},#{publishDate,jdbcType=DATE})
+    </insert>
+    <!--添加章节-->
+    <insert id="addChapter" parameterType="Chapter">
+        insert into f_chapter values (#{id},#{title},#{size},#{duration},#{downPath},sysdate(),#{aid})
+    </insert>
+</mapper>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-/mybatis.org//DTD
+Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baizhi.dao.UserDAO">
+    <!-- 用户登录功能的实现 -->
+    <select id="queryAll" resultType="User">
+        select * from f_user
+    </select>
+    <!--修改用户状态-->
+    <update id="updateOne" parameterType="java.lang.String">
+        update f_user set status = #{status} where id = #{id}
+    </update>
+    <!--查询用户注册的天数-->
+    <select id="queryDay" resultType="java.lang.Integer">
+        select Datediff(sysdate(),date) as day from f_user
+    </select>
+    <!--按照省份查询用户分布图-->
+    <select id="queryProvince" resultType="ProvinceMap" parameterType="java.lang.String">
+      select count(*) count,province from f_user where sex=#{sex} group by province;
+    </select>
+    <!--添加用户-->
+    <insert id="addOne" parameterType="User">
+        insert into f_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="phoneNum != null">
+                phoneNum,
+            </if>
+            <if test="username != null">
+                username,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="salt != null">
+                salt,
+            </if>
+            <if test="dharmaName != null">
+                dharmaName,
+            </if>
+            <if test="province != null">
+                province,
+            </if>
+            <if test="city != null">
+                city,
+            </if>
+            <if test="sex != null">
+                sex,
+            </if>
+            <if test="sign != null">
+                sign,
+            </if>
+            <if test="headPic != null">
+                headPic,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="date != null">
+                date,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="phoneNum != null">
+                #{phoneNum,jdbcType=VARCHAR},
+            </if>
+            <if test="username != null">
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="salt != null">
+                #{salt,jdbcType=VARCHAR},
+            </if>
+            <if test="dharmaName != null">
+                #{dharmaName,jdbcType=VARCHAR},
+            </if>
+            <if test="province != null">
+                #{province,jdbcType=VARCHAR},
+            </if>
+            <if test="city != null">
+                #{city,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                #{sex,jdbcType=VARCHAR},
+            </if>
+            <if test="sign != null">
+                #{sign,jdbcType=VARCHAR},
+            </if>
+            <if test="headPic != null">
+                #{headpic,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="date != null">
+                #{date,jdbcType=DATE},
+            </if>
+        </trim>
+    </insert>
+    <!--根据id更新用户-->
+    <update id="updateById" parameterType="User">
+    update f_user
+    set phoneNum = #{phoneNum,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      salt = #{salt,jdbcType=VARCHAR},
+      dharmaName = #{dharmaName,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      sign = #{sign,jdbcType=VARCHAR},
+      headPic = #{headPic,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      date = #{date,jdbcType=DATE}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+    <!--根据id查询用户-->
+    <select id="queryOne" resultType="User">
+        select * from f_user where id=#{id}
+    </select>
+    <!--根据name查询用户-->
+    <select id="queryOneByName" resultType="User" parameterType="java.lang.String">
+        select * from f_user where phoneNum = #{phoneNum}
+    </select>
+</mapper>

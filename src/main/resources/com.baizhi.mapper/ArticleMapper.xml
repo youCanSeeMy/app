@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baizhi.dao.ArticleDAO">
+  <sql id="Base_Column_List">
+    id, title, content, insertImgPath, publishDate, t_id tId
+  </sql>
+  <select id="queryAll" resultType="Article">
+    select 
+    <include refid="Base_Column_List" />
+    from f_article
+  </select>
+  <select id="queryOne" parameterType="java.lang.String" resultType="Article">
+    select
+    <include refid="Base_Column_List" />
+    from f_article
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="queryByTid" parameterType="java.lang.String" resultType="Article">
+    select
+    <include refid="Base_Column_List" />
+    from f_article
+    where t_id = #{tId,jdbcType=VARCHAR}
+  </select>
+  <select id="queryByNotTid" parameterType="java.lang.String" resultType="Article">
+    select
+    <include refid="Base_Column_List" />
+    from f_article
+    where t_id != #{tId,jdbcType=VARCHAR}
+  </select>
+</mapper>
