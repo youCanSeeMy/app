@@ -1,13 +1,10 @@
 package com.baizhi.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.baizhi.annoation.UserAnnoaction;
 import com.baizhi.entity.ProvinceMap;
 import com.baizhi.entity.User;
 import com.baizhi.service.UserService;
 import com.baizhi.util.UUIDUtil;
-import io.goeasy.GoEasy;
-import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -17,14 +14,11 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.util.*;
 
 @Controller

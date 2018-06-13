@@ -6,7 +6,6 @@ import com.baizhi.entity.User;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-import java.util.Map;
 
 public interface UserDAO {
     //查询所有用户

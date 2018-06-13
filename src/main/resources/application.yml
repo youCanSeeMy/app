@@ -1,0 +1,22 @@
+#主配置文件,profiles active:代表被激活的环境
+spring:
+  profiles:
+    active: dev
+    #解决中文乱码问题
+  http:
+    encoding:
+      charset: UTF-8
+      force: true
+  datasource:
+    #配置数据源
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test
+    username: root
+    password: root
+    type: com.alibaba.druid.pool.DruidDataSource
+server:
+  context-path: /app
+#配置mybatis文件,扫描mapper类和实体类
+mybatis:
+  mapper-locations: classpath:com/baizhi/mapper/*Mapper.xml
+  type-aliases-package: com.baizhi.entity

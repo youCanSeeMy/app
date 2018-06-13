@@ -1,6 +1,5 @@
 package com.baizhi.service;
 
-import com.baizhi.annoation.LogAnnoaction;
 import com.baizhi.entity.Banner;
 
 import java.util.List;

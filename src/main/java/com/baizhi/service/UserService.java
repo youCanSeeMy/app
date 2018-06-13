@@ -4,7 +4,6 @@ import com.baizhi.entity.ProvinceMap;
 import com.baizhi.entity.User;
 
 import java.util.List;
-import java.util.Map;
 
 public interface UserService {
     //显示所有用户

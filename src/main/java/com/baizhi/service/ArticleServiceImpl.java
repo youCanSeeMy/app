@@ -2,7 +2,6 @@ package com.baizhi.service;
 
 import com.baizhi.dao.ArticleDAO;
 import com.baizhi.dao.TeacherDAO;
-import com.baizhi.dao.UserDAO;
 import com.baizhi.entity.Article;
 import com.baizhi.entity.Teacher;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,10 +1,8 @@
 package com.baizhi.controller;
 
 import com.baizhi.entity.Ablum;
-import com.baizhi.entity.Banner;
 import com.baizhi.entity.Chapter;
 import com.baizhi.service.AblumService;
-import com.baizhi.service.BannerService;
 import com.baizhi.util.UUIDUtil;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
@@ -52,8 +50,7 @@ public class AblumController {
         map.put("rows", ablumsByPage);
         return map;
     }
-    //添加专辑
-    @RequestMapping(value="/addOne",produces = {MediaType.APPLICATION_JSON_UTF8_VALUE})
+    //添加专辑    @RequestMapping(value="/addOne",produces = {MediaType.APPLICATION_JSON_UTF8_VALUE})
     @ResponseBody
     public void addOne(HttpServletRequest request,Ablum ablum,MultipartFile ablumFile){
         //上传文件
